@@ -23,15 +23,6 @@
   --maxw: 1160px;
   color-scheme: light;
 }
-:root[data-theme="dark"] {
-  --bg: #0E2A4E; --surface: #12325C; --ink: #E8F0FA; --ink-2: #9FB6D3;
-  --line: #2F5585; --line-2: #4D74A6;
-  --grid: rgba(200, 225, 255, .08); --grid-2: rgba(200, 225, 255, .14);
-  --accent: #7FC8FF; --accent-soft: rgba(127, 200, 255, .10);
-  --mark: #FF8A65; --mark-soft: rgba(255, 138, 101, .14); --ok: #5FD39A;
-  --k: #E8F0FA;
-  color-scheme: dark;
-}
 
 /* ===== Base ===== */
 *, *::before, *::after { box-sizing: border-box; }
@@ -77,15 +68,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .sheets a b { font-family: var(--f-mono); font-weight: 500; font-size: 11px; margin-right: 4px; color: var(--line-2); }
 .sheets a:hover, .sheets a.on { color: var(--ink); border-color: var(--line); background: var(--surface); }
 .sheets a.on b { color: var(--accent); }
-.theme-btn {
-  font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em;
-  color: var(--ink); background: var(--surface); border: 1px solid var(--line);
-  padding: 7px 10px; cursor: pointer; min-height: 32px;
-}
-.theme-btn:hover { border-color: var(--accent); }
-.theme-btn .t-dark { display: none; }
-:root[data-theme="dark"] .theme-btn .t-light { display: none; }
-:root[data-theme="dark"] .theme-btn .t-dark { display: inline; }
 
 /* ===== Cover ===== */
 .cover { padding: 88px 0 56px; border-bottom: 1px solid var(--line); }
@@ -201,6 +183,10 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .diagram .ah { fill: var(--ink-2); }
 .diagram .edge-label { font-family: var(--f-mono); font-size: 10.5px; fill: var(--ink-2); font-weight: 400; text-anchor: start; }
 .diagram .edge-label.acc { fill: var(--accent); font-weight: 600; }
+.diagram .edge-label.mid { text-anchor: middle; }
+.diagram .actor rect { fill: var(--ink); stroke: var(--ink); }
+.diagram .actor text { fill: var(--bg); }
+.diagram .actor text.t-s { fill: color-mix(in srgb, var(--bg) 72%, var(--ink)); }
 .diagram .legend { text-anchor: middle; font-size: 11px; fill: var(--ink-2); font-weight: 400; }
 .diagram .lg-mine { fill: var(--accent); }
 

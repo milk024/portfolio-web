@@ -1,19 +1,6 @@
 (function () {
   var root = document.documentElement;
 
-  // Theme toggle: paper <-> blueprint
-  var btn = document.getElementById('themeBtn');
-  function isDark() {
-    return root.getAttribute('data-theme') === 'dark';
-  }
-  if (btn) {
-    btn.addEventListener('click', function () {
-      var next = isDark() ? 'light' : 'dark';
-      root.setAttribute('data-theme', next);
-      try { localStorage.setItem('theme', next); } catch (e) {}
-    });
-  }
-
   // Screenshot tabs
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tabs [role="tab"]'));
   var img = document.getElementById('shotImg');

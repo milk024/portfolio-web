@@ -9,9 +9,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="style.css">
-<script>
-  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
 </head>
 <body>
 
@@ -26,9 +23,6 @@
       <a href="#stack"><b>S-05</b> 기술</a>
       <a href="#record"><b>S-06</b> 이력</a>
     </nav>
-    <button class="theme-btn" id="themeBtn" type="button" aria-label="테마 전환">
-      <span class="t-light">PAPER</span><span class="t-dark">BLUEPRINT</span>
-    </button>
   </div>
 </header>
 
@@ -135,7 +129,7 @@
           <!-- cicd -->
           <g class="grp"><rect x="200" y="256" width="440" height="108"/><text x="212" y="274" class="grp-label">CI/CD · GitOps</text></g>
           <g class="box"><rect x="214" y="290" width="120" height="58"/><text x="274" y="314">Gitea</text><text x="274" y="331" class="t-s">Repo · Registry</text></g>
-          <g class="box"><rect x="364" y="290" width="120" height="58"/><text x="424" y="314">Jenkins</text><text x="424" y="331" class="t-s">팀별 Kaniko</text></g>
+          <g class="box"><rect x="378" y="290" width="112" height="58"/><text x="434" y="314">Jenkins</text><text x="434" y="331" class="t-s">팀별 Kaniko</text></g>
           <g class="box accent"><rect x="514" y="290" width="112" height="58"/><text x="570" y="314">ArgoCD</text><text x="570" y="331" class="t-s">prune · selfHeal</text></g>
 
           <!-- infra -->
@@ -158,18 +152,20 @@
             <path d="M350 140 H380 V171 H402" marker-end="url(#ah)"/>
             <path d="M626 171 H658 V103 H688" marker-end="url(#ah)"/>
             <path d="M144 318 H212" marker-end="url(#ah)"/>
-            <path d="M334 310 H362" marker-end="url(#ah)"/>
-            <path d="M364 334 H336" marker-end="url(#ah)" class="dash"/>
-            <path d="M274 348 V380 H570 V350" marker-end="url(#ah)"/>
-            <path d="M570 290 V230 H515 V198" marker-end="url(#ah)" class="sync"/>
+            <path d="M334 310 H376" marker-end="url(#ah)"/>
+            <path d="M378 334 H336" marker-end="url(#ah)" class="dash"/>
+            <path d="M274 348 V382 H570 V350" marker-end="url(#ah)"/>
+            <path d="M570 290 V210" marker-end="url(#ah)" class="sync"/>
+            <path d="M626 319 H674" marker-end="url(#ah)" class="sync"/>
           </g>
-          <text x="348" y="377" class="edge-label">push webhook</text>
-          <text x="578" y="248" class="edge-label acc">sync</text>
-          <text x="344" y="303" class="edge-label">build</text>
-          <text x="660" y="94" class="edge-label">LLM</text>
+          <text x="422" y="376" class="edge-label mid">push webhook</text>
+          <text x="578" y="244" class="edge-label acc">sync</text>
+          <text x="650" y="312" class="edge-label acc mid">sync</text>
+          <text x="355" y="303" class="edge-label mid">build</text>
+          <text x="357" y="347" class="edge-label mid">tag</text>
         </svg>
       </div>
-      <figcaption>개발자는 push만 합니다. Jenkins가 팀별 네임스페이스에서 이미지를 빌드하고 배포 저장소의 태그를 올리면, ArgoCD가 수 초 안에 클러스터를 맞춥니다.</figcaption>
+      <figcaption>개발자는 push만 합니다. Jenkins가 팀별 네임스페이스에서 이미지를 빌드하고 배포 저장소의 태그를 올리면, ArgoCD가 사업 서비스(vkey · rag)와 infra를 수 초 안에 맞춥니다.</figcaption>
     </figure>
 
     <h3 class="sub">CI/CD를 GitOps로 재구성</h3>
@@ -254,6 +250,8 @@
         <button role="tab" id="tab-build" aria-selected="false" aria-controls="shot" data-src="assets/builds.png" data-cap="빌드: Jenkins 빌드 대상 앱 전체의 최근 빌드와 성공 이력을 웹훅으로 실시간 반영">빌드</button>
         <button role="tab" id="tab-gpu" aria-selected="false" aria-controls="shot" data-src="assets/monitoring-gpu.png" data-cap="GPU 모니터링: GPU별 사용률과 할당된 파드 매핑 (DCGM exporter + PromQL)">GPU</button>
         <button role="tab" id="tab-pod" aria-selected="false" aria-controls="shot" data-src="assets/pod-related.png" data-cap="Pod 상세: 소유 체인·Service·HTTPRoute·ConfigMap·Secret(이름만)·PVC와 직전 크래시 로그">Pod 진단</button>
+        <button role="tab" id="tab-logs" aria-selected="false" aria-controls="shot" data-src="assets/pod-logs.png" data-cap="Pod 로그: 에러만 보기 · 직전 컨테이너 · 검색 · 받기">Pod 로그</button>
+        <button role="tab" id="tab-yaml" aria-selected="false" aria-controls="shot" data-src="assets/namespace-yaml.png" data-cap="네임스페이스 YAML: 조회는 모든 네임스페이스, 수정은 개발 서비스만. ArgoCD가 관리하는 리소스는 읽기 전용이고 Secret은 다루지 않습니다">YAML 편집</button>
       </div>
       <figure class="shot-frame" role="tabpanel" id="shot" aria-labelledby="tab-dash">
         <img id="shotImg" src="assets/dashboard.png" alt="운영 대시보드 화면" width="1440" height="900" loading="lazy">
