@@ -4,9 +4,7 @@
   // Theme toggle: paper <-> blueprint
   var btn = document.getElementById('themeBtn');
   function isDark() {
-    var t = root.getAttribute('data-theme');
-    if (t) return t === 'dark';
-    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return root.getAttribute('data-theme') === 'dark';
   }
   if (btn) {
     btn.addEventListener('click', function () {
