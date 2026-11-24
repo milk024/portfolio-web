@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>양진형 포트폴리오</title>
+<meta name="description" content="SA · SI · DevOps 엔지니어 양진형. GPU Kubernetes 인프라 구축·운영, 실시간 협업 플랫폼 아키텍처, AI 학습 파이프라인 설계.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112..125,600..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="style.css">
+<script>
+  try { var t = localStorage.getItem('theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#top">JHY<span>/</span>DWG</a>
+    <nav class="sheets" aria-label="섹션">
+      <a href="#infra"><b>S-01</b> 인프라</a>
+      <a href="#cmyk"><b>S-02</b> CMYK</a>
+      <a href="#timoa"><b>S-03</b> TIMOA</a>
+      <a href="#principles"><b>S-04</b> 원칙</a>
+      <a href="#stack"><b>S-05</b> 기술</a>
+      <a href="#record"><b>S-06</b> 이력</a>
+    </nav>
+    <button class="theme-btn" id="themeBtn" type="button" aria-label="테마 전환">
+      <span class="t-light">PAPER</span><span class="t-dark">BLUEPRINT</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ COVER ============ -->
+<section class="cover">
+  <div class="wrap cover-grid">
+    <div class="cover-main">
+      <p class="eyebrow">SA · SI · DevOps Engineer</p>
+      <h1>판을 설계하고,<br><em>끝까지 운영으로</em> 증명합니다.</h1>
+      <p class="lede">GPU 서버 한 대 위의 Kubernetes를 직접 구축해, 2개 개발팀 8명이 인프라 담당자를 거치지 않고 스스로 배포하는 플랫폼으로 운영하고 있습니다. 설계 원칙은 문서로 먼저 세우고, 내린 결정은 모두 ADR로 남깁니다.</p>
+      <div class="cta">
+        <a class="btn primary" href="#infra">운영 중인 시스템 보기</a>
+        <a class="btn" href="mailto:ybc1642@gmail.com">ybc1642@gmail.com</a>
+      </div>
+    </div>
+
+    <aside class="titleblock" aria-label="도면 표제란">
+      <div class="tb-row tb-head"><span>도면명</span><strong>PORTFOLIO</strong></div>
+      <div class="tb-row"><span>작성자</span><strong>양진형 <small>Jin-Hyeong Yang</small></strong></div>
+      <div class="tb-row"><span>직무</span><strong>시스템 아키텍트 · 시스템 통합 · DevOps</strong></div>
+      <div class="tb-row"><span>소속</span><strong>우송대학교 AI·빅데이터학과 <small>졸업 예정</small></strong></div>
+      <div class="tb-split">
+        <div class="tb-row"><span>개정</span><strong class="mono">REV.03</strong></div>
+        <div class="tb-row"><span>일자</span><strong class="mono">2026-11</strong></div>
+      </div>
+      <div class="tb-row"><span>GitHub</span><strong class="mono"><a href="https://github.com/milk024">milk024</a> · <a href="https://github.com/TIMOA-MAIN">TIMOA-MAIN</a></strong></div>
+    </aside>
+  </div>
+
+  <div class="wrap">
+    <dl class="readout" aria-label="운영 클러스터 현황 (2026-11-17 기준)">
+      <div><dt>Pod</dt><dd>73</dd></div>
+      <div><dt>namespace</dt><dd>22</dd></div>
+      <div><dt>GPU</dt><dd>L40S×4</dd></div>
+      <div><dt>자동 배포</dt><dd>269<small>회</small></dd></div>
+      <div><dt>배포 중앙값</dt><dd>38<small>s</small></dd></div>
+      <div><dt>ADR</dt><dd>53<small>건</small></dd></div>
+      <p class="readout-note"><span class="dot"></span>운영 클러스터 실측 · 2026-11-17 기준</p>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ S-01 INFRA ============ -->
+<section class="sheet" id="infra">
+  <div class="wrap">
+    <header class="sheet-head">
+      <p class="sheet-no">S-01</p>
+      <div>
+        <h2>GPU 기반 Kubernetes 인프라 구축·운영</h2>
+        <p class="sheet-sub">대학혁신지원사업 · AI 문서작성 RAG 시스템과 API 가상 키 발급·관리 시스템이 올라가는 클러스터</p>
+      </div>
+      <dl class="meta">
+        <div><dt>기간</dt><dd>2026.06 – 운영 중</dd></div>
+        <div><dt>역할</dt><dd>인프라 총괄 (Admin)</dd></div>
+        <div><dt>환경</dt><dd>128 thread · 512 GB · L40S ×4</dd></div>
+      </dl>
+    </header>
+
+    <div class="intro-cols">
+      <p>kubeadm 설치 이후의 네트워크, 배포, 관측성, 권한 체계, 개발자 환경을 직접 구축했습니다. 목표는 하나였습니다. 두 개발팀이 서로 간섭하지 않고, 인프라 담당자를 기다리지 않고 스스로 개발하고 배포할 수 있는 환경입니다.</p>
+      <p>랙은 하나, 구축 기간은 1주일이었습니다. 1단계는 단일 노드 PoC로 범위를 좁혀 두 서비스를 먼저 올리고, 노드 장애 시 전체 중단 같은 리스크는 문서에 명시했습니다. 멀티 노드 HA와 사업별 랙 분리는 2단계 설계로 미리 준비해 두었습니다.</p>
+    </div>
+
+    <h3 class="sub">아키텍처</h3>
+    <figure class="diagram">
+      <div class="scroll-x">
+        <svg viewBox="0 0 960 520" role="img" aria-label="단일 GPU 노드 위의 Kubernetes 클러스터 구성도">
+          <defs>
+            <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+          </defs>
+          <!-- actors -->
+          <g class="actor">
+            <rect x="16" y="100" width="128" height="56" rx="2"/>
+            <text x="80" y="124">학생 · 사용자</text>
+            <text x="80" y="142" class="t-s">vkey 100명</text>
+            <rect x="16" y="290" width="128" height="56" rx="2"/>
+            <text x="80" y="314">개발자</text>
+            <text x="80" y="332" class="t-s">2개 팀 · 8명</text>
+          </g>
+          <!-- node frame -->
+          <rect x="180" y="16" width="764" height="488" class="frame"/>
+          <text x="196" y="38" class="frame-label">GPU 단일 노드 · kubeadm · Calico · MetalLB L2</text>
+
+          <!-- gateway -->
+          <g class="box accent">
+            <rect x="200" y="98" width="150" height="62"/>
+            <text x="275" y="124">Envoy Gateway</text>
+            <text x="275" y="142" class="t-s">Gateway API · TLS</text>
+          </g>
+
+          <!-- services -->
+          <g class="grp"><rect x="390" y="56" width="250" height="152"/><text x="402" y="74" class="grp-label">사업 서비스</text></g>
+          <g class="box"><rect x="404" y="86" width="222" height="50"/><text x="515" y="108">vkey-system</text><text x="515" y="125" class="t-s">web · server · Postgres</text></g>
+          <g class="box"><rect x="404" y="146" width="222" height="50"/><text x="515" y="168">rag-system</text><text x="515" y="185" class="t-s">web · server(GPU) · pgvector</text></g>
+
+          <!-- llm -->
+          <g class="grp"><rect x="676" y="56" width="252" height="152"/><text x="688" y="74" class="grp-label">llm-serving · KServe + llm-d</text></g>
+          <g class="box"><rect x="690" y="86" width="224" height="34"/><text x="802" y="108">Envoy AI Gateway → scheduler</text></g>
+          <g class="box gpu"><rect x="690" y="134" width="106" height="60"/><text x="743" y="158">vLLM #1</text><text x="743" y="176" class="t-s">GPU</text></g>
+          <g class="box gpu"><rect x="808" y="134" width="106" height="60"/><text x="861" y="158">vLLM #2</text><text x="861" y="176" class="t-s">GPU</text></g>
+
+          <!-- cicd -->
+          <g class="grp"><rect x="200" y="256" width="440" height="108"/><text x="212" y="274" class="grp-label">CI/CD · GitOps</text></g>
+          <g class="box"><rect x="214" y="290" width="120" height="58"/><text x="274" y="314">Gitea</text><text x="274" y="331" class="t-s">Repo · Registry</text></g>
+          <g class="box"><rect x="364" y="290" width="120" height="58"/><text x="424" y="314">Jenkins</text><text x="424" y="331" class="t-s">팀별 Kaniko</text></g>
+          <g class="box accent"><rect x="514" y="290" width="112" height="58"/><text x="570" y="314">ArgoCD</text><text x="570" y="331" class="t-s">prune · selfHeal</text></g>
+
+          <!-- infra -->
+          <g class="grp"><rect x="676" y="256" width="252" height="108"/><text x="688" y="274" class="grp-label">infra · 자체 개발</text></g>
+          <g class="box mine"><rect x="690" y="286" width="106" height="30"/><text x="743" y="306">k8s-manager</text></g>
+          <g class="box mine"><rect x="808" y="286" width="106" height="30"/><text x="861" y="306">admin-manager</text></g>
+          <g class="box mine"><rect x="690" y="324" width="224" height="30"/><text x="802" y="344">monitoring-web</text></g>
+
+          <!-- monitoring + storage -->
+          <g class="grp"><rect x="200" y="400" width="260" height="88"/><text x="212" y="418" class="grp-label">monitoring</text></g>
+          <g class="box"><rect x="214" y="428" width="128" height="46"/><text x="278" y="450">Prometheus</text><text x="278" y="466" class="t-s">Alertmanager</text></g>
+          <g class="box"><rect x="352" y="428" width="94" height="46"/><text x="399" y="456">DCGM</text></g>
+          <g class="box store"><rect x="490" y="420" width="150" height="62"/><text x="565" y="444">nfs-csi</text><text x="565" y="462" class="t-s">loopback NFS 7.6 TB</text></g>
+          <g class="box warn"><rect x="676" y="400" width="252" height="88"/><text x="802" y="428" class="warn-t">단일 장애점</text><text x="802" y="448" class="t-s">노드·NFS 장애 = 전체 중단</text><text x="802" y="466" class="t-s">→ ADR-045 멀티노드 전환 계획</text></g>
+
+          <!-- edges -->
+          <g class="edge">
+            <path d="M144 128 H198" marker-end="url(#ah)"/>
+            <path d="M350 118 H380 V111 H402" marker-end="url(#ah)"/>
+            <path d="M350 140 H380 V171 H402" marker-end="url(#ah)"/>
+            <path d="M626 171 H658 V103 H688" marker-end="url(#ah)"/>
+            <path d="M144 318 H212" marker-end="url(#ah)"/>
+            <path d="M334 310 H362" marker-end="url(#ah)"/>
+            <path d="M364 334 H336" marker-end="url(#ah)" class="dash"/>
+            <path d="M274 348 V380 H570 V350" marker-end="url(#ah)"/>
+            <path d="M570 290 V230 H515 V198" marker-end="url(#ah)" class="sync"/>
+          </g>
+          <text x="348" y="377" class="edge-label">push webhook</text>
+          <text x="578" y="248" class="edge-label acc">sync</text>
+          <text x="344" y="303" class="edge-label">build</text>
+          <text x="660" y="94" class="edge-label">LLM</text>
+        </svg>
+      </div>
+      <figcaption>개발자는 push만 합니다. Jenkins가 팀별 네임스페이스에서 이미지를 빌드하고 배포 저장소의 태그를 올리면, ArgoCD가 수 초 안에 클러스터를 맞춥니다.</figcaption>
+    </figure>
+
+    <h3 class="sub">CI/CD를 GitOps로 재구성</h3>
+    <div class="scroll-x">
+      <table class="compare">
+        <thead><tr><th scope="col">항목</th><th scope="col" class="before">이전</th><th scope="col">이후</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">빌드</th><td class="before">Gitea Actions + DinD Runner 1개 (privileged)</td><td>Jenkins + Kaniko, 팀별 빌드 네임스페이스 (privileged 없음)</td></tr>
+          <tr><th scope="row">배포</th><td class="before">CI가 kubeconfig로 <code>helm upgrade</code></td><td>CI는 이미지 태그만 커밋, ArgoCD가 동기화</td></tr>
+          <tr><th scope="row">개발자 권한</th><td class="before">클러스터에 배포 가능</td><td>조회·디버깅만. 배포는 PR → 승인 → ArgoCD</td></tr>
+          <tr><th scope="row">반영 대기</th><td class="before">ArgoCD 폴링 최대 약 4분</td><td>Gitea push 웹훅으로 수 초</td></tr>
+          <tr><th scope="row">권한 원본</th><td class="before">엑셀 대장 + 수작업 <code>kubectl apply</code></td><td>Terraform 코드. import 후 <code>plan</code> 차이 0건</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">고친 것들, 숫자로</h3>
+    <div class="ledger" role="list">
+      <div class="lg" role="listitem">
+        <p class="lg-name">CI 실패율</p>
+        <div class="lg-bars"><span class="b before" style="--w:100%"></span><span class="b after" style="--w:16.9%"></span></div>
+        <p class="lg-val"><s>13.0%</s> → <b>2.2%</b> <small>8월 → 10월</small></p>
+      </div>
+      <div class="lg" role="listitem">
+        <p class="lg-name">GPU 드라이버 재시작</p>
+        <div class="lg-bars"><span class="b before" style="--w:100%"></span><span class="b after" style="--w:0%"></span></div>
+        <p class="lg-val"><s>219회</s> → <b>0회</b> <small>DNS 장애로 커널 헤더 미수신</small></p>
+      </div>
+      <div class="lg" role="listitem">
+        <p class="lg-name">빌드 요약 API 응답</p>
+        <div class="lg-bars"><span class="b before" style="--w:100%"></span><span class="b after" style="--w:9.1%"></span></div>
+        <p class="lg-val"><s>약 55초</s> → <b>약 5초</b> <small>순차 탐색 + 캐시</small></p>
+      </div>
+      <div class="lg" role="listitem">
+        <p class="lg-name">빌드 캐시 디스크 점유</p>
+        <div class="lg-bars"><span class="b before" style="--w:100%"></span><span class="b after" style="--w:0%"></span></div>
+        <p class="lg-val"><s>248 GB</s> → <b>0</b> <small>DinD → Kaniko</small></p>
+      </div>
+      <div class="lg up" role="listitem">
+        <p class="lg-name">GPU 지표 수집</p>
+        <div class="lg-bars"><span class="b before" style="--w:0%"></span><span class="b after" style="--w:100%"></span></div>
+        <p class="lg-val"><s>0장</s> → <b>4장 전체</b> <small>ServiceMonitor 라벨 오류</small></p>
+      </div>
+      <p class="ledger-note">막대는 행마다 큰 값을 100%로 둔 비율입니다. 자동 배포 269회 중 성공률 93%, push부터 배포 완료까지 중앙값 38초 (10주간).</p>
+    </div>
+
+    <h3 class="sub">장애 보고서</h3>
+    <article class="incident">
+      <header class="inc-head">
+        <p class="inc-tag">INCIDENT · SEV-1</p>
+        <h4>자동 업데이트 한 번에 전 서비스 26시간 19분 중단</h4>
+        <p class="inc-meta">영향: 가상 키 API · RAG DB · Gitea · Prometheus · 데이터 손실 0</p>
+      </header>
+      <div class="inc-body">
+        <div class="inc-col">
+          <p class="inc-label">원인 추적</p>
+          <ol class="trace">
+            <li>load average 약 9,100인데 CPU 사용률은 2%. 프로세스가 I/O 대기(D state)에 묶였다고 판단</li>
+            <li>영향받은 서비스의 공통점은 모두 <code>nfs-csi</code> PVC. <code>node_nfsd_packets_total</code>이 멈춰 있음</li>
+            <li><code>journalctl</code>: <code>rpc.nfsd</code>가 <code>errno 12</code>로 기동 실패</li>
+            <li>재시작 주체는 사람이 아니라 <code>unattended-upgrades</code> + <code>needrestart</code>. 58일 무재부팅으로 커널 메모리 단편화</li>
+            <li>알림이 없던 이유: Prometheus도 같은 NFS 위에 있었고, Alertmanager receiver가 <code>null</code></li>
+          </ol>
+        </div>
+        <div class="inc-col">
+          <p class="inc-label">재발 방지</p>
+          <ul class="fix">
+            <li>자동 업데이트 비활성화, 패치는 점검 시간에 수동 적용 <span class="adr">ADR-043</span></li>
+            <li>새 커널에 RAID 드라이버가 없어 재부팅 시 부팅 불가 상태임을 발견. 커널 고정 + 드라이버 재빌드 절차 문서화 <span class="adr">ADR-044</span></li>
+            <li>단일 NFS·알림 부재는 Tier별 RTO/RPO와 8주 멀티노드 전환 계획에 편입 <span class="adr">ADR-045</span></li>
+          </ul>
+          <p class="lesson">감시 체계는 감시 대상과 분리되어야 한다.</p>
+        </div>
+      </div>
+    </article>
+
+    <h3 class="sub">운영 콘솔 <span class="sub-note">monitoring-web · React · socket.io · 1인 개발</span></h3>
+    <div class="console">
+      <div class="tabs" role="tablist" aria-label="운영 콘솔 화면">
+        <button role="tab" id="tab-dash" aria-selected="true" aria-controls="shot" data-src="assets/dashboard.png" data-cap="대시보드: 파드·배포·네임스페이스·경고 이벤트 요약과 리소스 사용량 Top 5">대시보드</button>
+        <button role="tab" id="tab-deploy" aria-selected="false" aria-controls="shot" data-src="assets/deploy-status.png" data-cap="배포 상태: ArgoCD Sync·Health와 '빌드 대비'. 배포된 이미지 태그(커밋 SHA)를 최근 성공 빌드와 비교해 push가 어느 단계에서 멈췄는지 보여줍니다">배포 상태</button>
+        <button role="tab" id="tab-build" aria-selected="false" aria-controls="shot" data-src="assets/builds.png" data-cap="빌드: Jenkins 빌드 대상 앱 전체의 최근 빌드와 성공 이력을 웹훅으로 실시간 반영">빌드</button>
+        <button role="tab" id="tab-gpu" aria-selected="false" aria-controls="shot" data-src="assets/monitoring-gpu.png" data-cap="GPU 모니터링: GPU별 사용률과 할당된 파드 매핑 (DCGM exporter + PromQL)">GPU</button>
+        <button role="tab" id="tab-pod" aria-selected="false" aria-controls="shot" data-src="assets/pod-related.png" data-cap="Pod 상세: 소유 체인·Service·HTTPRoute·ConfigMap·Secret(이름만)·PVC와 직전 크래시 로그">Pod 진단</button>
+      </div>
+      <figure class="shot-frame" role="tabpanel" id="shot" aria-labelledby="tab-dash">
+        <img id="shotImg" src="assets/dashboard.png" alt="운영 대시보드 화면" width="1440" height="900" loading="lazy">
+        <figcaption id="shotCap">대시보드: 파드·배포·네임스페이스·경고 이벤트 요약과 리소스 사용량 Top 5</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="sub">대표 의사결정 <span class="sub-note">53건 중 · 확정 28 · 제안 2 · 대기 15</span></h3>
+    <ul class="adr-list">
+      <li><span class="adr-no">007</span><p><b>Ingress 대신 Gateway API (Envoy Gateway)</b>네임스페이스 공용 Gateway를 재사용해 LB IP 절약</p></li>
+      <li><span class="adr-no">014</span><p><b>개발자 권한은 네임스페이스 범위 Role만</b>사업 간 권한 격리, ClusterRole 미사용, Secret 조회 불가</p></li>
+      <li><span class="adr-no">046</span><p><b>토큰을 Helm 밖 Secret으로 분리</b>Helm 부분 실패로 토큰이 빈 값으로 덮어써진 실제 사고</p></li>
+      <li><span class="adr-no">047</span><p><b>대시보드 데이터는 socket.io push</b>브라우저 수와 무관하게 클러스터 조회는 서버 한 곳</p></li>
+      <li><span class="adr-no">051</span><p><b>배포는 ArgoCD GitOps, 개발자 kubectl은 조회만</b>CI의 <code>helm upgrade</code>가 사실상 클러스터 쓰기 권한이었음</p></li>
+      <li><span class="adr-no">053</span><p><b>관리 도구는 조회 전체·수정 최소</b>관리 도구가 자기 자신(<code>infra</code>)을 수정할 수 없게 설계</p></li>
+    </ul>
+
+    <h3 class="sub">저장소</h3>
+    <ul class="repos">
+      <li><a href="https://github.com/milk024/k8s-manager"><b>k8s-manager</b><span>관리 서버 · 인프라 매니페스트 · ADR 53건</span><i>Node.js</i></a></li>
+      <li><a href="https://github.com/milk024/admin-manager"><b>admin-manager</b><span>고권한 작업 분리 서버 · kubeconfig 발급 · 감사 로그</span><i>Express · JWT</i></a></li>
+      <li><a href="https://github.com/milk024/k8s-monitoring-web"><b>k8s-monitoring-web</b><span>운영 콘솔 · 빌드/배포/Pod 진단/YAML 편집</span><i>React · Vite</i></a></li>
+      <li><a href="https://github.com/milk024/k8s-terraform-role"><b>k8s-terraform-role</b><span>팀별 RBAC 코드화 · import 후 plan 0 diff</span><i>Terraform</i></a></li>
+      <li><a href="https://github.com/milk024/deploy-infra"><b>deploy-infra</b><span>infra 네임스페이스 GitOps 저장소</span><i>Helm · ArgoCD</i></a></li>
+      <li><a href="https://github.com/milk024/deploy-rag"><b>deploy-rag</b><span>rag-system GitOps 저장소 · PR 승인 필수</span><i>Helm · ArgoCD</i></a></li>
+      <li><a href="https://github.com/milk024/deploy-vkey"><b>deploy-vkey</b><span>vkey-system GitOps 저장소 · PR 승인 필수</span><i>Helm · ArgoCD</i></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ S-02 CMYK ============ -->
+<section class="sheet" id="cmyk">
+  <div class="wrap">
+    <header class="sheet-head">
+      <p class="sheet-no">S-02</p>
+      <div>
+        <h2>CMYK Grayspot Detection System</h2>
+        <p class="sheet-sub">HP 산학협력 · CMYK 인쇄물의 Grayspot 결함을 Level 0–5로 분류하는 AI 탐지 시스템</p>
+      </div>
+      <dl class="meta">
+        <div><dt>기간</dt><dd>2026.03 – 2026.06</dd></div>
+        <div><dt>역할</dt><dd>R2 Model &amp; Training · SA</dd></div>
+        <div><dt>팀</dt><dd>6인 (외국인 3 · 한국인 3)</dd></div>
+      </dl>
+    </header>
+
+    <div class="cmyk-grid">
+      <div class="cmyk-text">
+        <p>C/M/Y/K 채널별 이미지에서 결함 수준을 분류합니다. 비지도 사전학습과 지도 분류학습을 결합한 2단계 학습 구조, Swing Architecture를 설계했습니다.</p>
+        <ul class="plain">
+          <li><b>Phase 0</b> SimCLR 기반 대조 학습으로 backbone 사전학습. PyTorch로 전담 구현</li>
+          <li><b>Phase 2</b> 사전학습된 backbone을 지도 분류 학습으로 전이. Head를 Classifier에서 Projection으로 교체하고 입출력 파라미터 조정</li>
+          <li><b>SSOT</b> 모든 파라미터·경로를 config 단일 원천으로. 하드코딩 경로 제거, Fail-Fast 검증 코드(SSOT-FF01 등) 설계</li>
+          <li><b>테스트</b> 단위 · 통합 · 스모크 계층화 (TDD/BDD)</li>
+        </ul>
+      </div>
+      <div class="levels" aria-label="결함 수준 Level 0부터 5">
+        <p class="inc-label">분류 대상</p>
+        <div class="lv-row">
+          <span style="--k:0">0</span><span style="--k:1">1</span><span style="--k:2">2</span><span style="--k:3">3</span><span style="--k:4">4</span><span style="--k:5">5</span>
+        </div>
+        <div class="ch-row"><i class="c">C</i><i class="m">M</i><i class="y">Y</i><i class="k">K</i></div>
+        <p class="lv-note">4채널 × 6단계 Grayspot Level</p>
+      </div>
+    </div>
+
+    <h3 class="sub">설계 문서 연쇄 체계</h3>
+    <p class="body-narrow">개발 초기에 코드가 설계 문서보다 앞서면서 테스트의 근거와 설계–테스트 추적성이 끊겼습니다. 문서가 다음 문서의 입력이 되도록 순서를 ADR로 공식화했고, 46건의 설계 문서가 하나의 흐름으로 연결됐습니다.</p>
+    <ol class="chain" aria-label="PRD에서 Code까지 문서 흐름">
+      <li><b>PRD</b><span>요구사항</span></li>
+      <li><b>SSOT</b><span>파라미터 단일 원천</span></li>
+      <li><b>Contract</b><span>모듈 경계 조건</span></li>
+      <li><b>BDD</b><span>행위 시나리오</span></li>
+      <li><b>TDD</b><span>테스트 계층</span></li>
+      <li><b>Code</b><span>구현</span></li>
+    </ol>
+    <p class="chain-foot"><span class="mono">46</span> 설계 문서 · Contract로 팀 전체 경계 조건 불일치 제거 · HLD/LLD로 온보딩 시간 단축</p>
+  </div>
+</section>
+
+<!-- ============ S-03 TIMOA ============ -->
+<section class="sheet" id="timoa">
+  <div class="wrap">
+    <header class="sheet-head">
+      <p class="sheet-no">S-03</p>
+      <div>
+        <h2>T.I.M.O.A 코딩 협업 플랫폼</h2>
+        <p class="sheet-sub">우송 비트 고급 과정 · VS Live Share, Notion, Slack, Discord를 하나로 묶은 실시간 협업 데스크탑 앱</p>
+      </div>
+      <dl class="meta">
+        <div><dt>기간</dt><dd>2025.06 – 2025.12</dd></div>
+        <div><dt>역할</dt><dd>Team Leader · SA · SI</dd></div>
+        <div><dt>팀</dt><dd>5인 → 고도화 4인</dd></div>
+      </dl>
+    </header>
+
+    <div class="big-nums">
+      <div><p class="bn">100<small>명</small></p><p>CRDT 동시 편집 테스트 통과<br><span>Y.js · 문서 편집기와 IDE 양쪽</span></p></div>
+      <div><p class="bn">50<small>명</small></p><p>음성 통화 동시 접속 테스트 통과<br><span>WebRTC · MediaSoup SFU</span></p></div>
+      <div><p class="bn">7<small>개</small></p><p>서버로 분리한 MSA 지향 구조<br><span>Contract 사전 정의로 병렬 개발</span></p></div>
+    </div>
+
+    <figure class="diagram">
+      <div class="scroll-x">
+        <svg viewBox="0 0 960 300" role="img" aria-label="TIMOA 시스템 구성도">
+          <defs>
+            <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
+          </defs>
+          <g class="box"><rect x="16" y="120" width="150" height="60"/><text x="91" y="146">Desktop Client</text><text x="91" y="163" class="t-s">Electron · React</text></g>
+          <g class="box accent mine"><rect x="210" y="120" width="150" height="60"/><text x="285" y="146">Proxy Server</text><text x="285" y="163" class="t-s">헬스체크 동적 라우팅</text></g>
+          <g class="edge"><path d="M166 150 H208" marker-end="url(#ah2)"/></g>
+
+          <g class="box"><rect x="420" y="16" width="200" height="40"/><text x="520" y="41">Chat · REST + SSE</text></g>
+          <g class="box"><rect x="420" y="66" width="200" height="40"/><text x="520" y="91">Dashboard · REST + SSE</text></g>
+          <g class="box"><rect x="420" y="116" width="200" height="40"/><text x="520" y="141">User · Spring Boot</text></g>
+          <g class="box mine"><rect x="420" y="166" width="200" height="40"/><text x="520" y="191">Document · Y.js CRDT</text></g>
+          <g class="box mine"><rect x="420" y="216" width="200" height="40"/><text x="520" y="241">Code · Theia + CRDT</text></g>
+          <g class="box mine"><rect x="660" y="216" width="150" height="40"/><text x="735" y="241">Voice · MediaSoup</text></g>
+
+          <g class="edge">
+            <path d="M360 150 H390 V36 H418" marker-end="url(#ah2)"/>
+            <path d="M390 86 H418" marker-end="url(#ah2)"/>
+            <path d="M390 136 H418" marker-end="url(#ah2)"/>
+            <path d="M390 186 H418" marker-end="url(#ah2)"/>
+            <path d="M390 150 V236 H418" marker-end="url(#ah2)"/>
+            <path d="M390 268 H735 V258" marker-end="url(#ah2)"/>
+            <path d="M390 236 V268"/>
+            <path d="M620 36 H700 V100" marker-end="url(#ah2)" class="thin"/>
+            <path d="M620 136 H698" marker-end="url(#ah2)" class="thin"/>
+            <path d="M620 186 H700 V154" marker-end="url(#ah2)" class="thin"/>
+          </g>
+          <g class="box store"><rect x="660" y="102" width="130" height="50"/><text x="725" y="125">MS SQL</text><text x="725" y="141" class="t-s">공유 DB</text></g>
+          <g class="box store"><rect x="820" y="102" width="124" height="50"/><text x="882" y="125">AWS S3</text><text x="882" y="141" class="t-s">파일 스토리지</text></g>
+          <text x="864" y="236" class="legend"><tspan class="lg-mine">■</tspan> 직접 담당</text>
+        </svg>
+      </div>
+      <figcaption>서비스마다 통신 방식을 따로 골랐습니다. 채팅·대시보드는 단방향 갱신이 대부분이라 WebSocket 대신 SSE, 편집은 CRDT, 음성은 SFU.</figcaption>
+    </figure>
+
+    <div class="decisions">
+      <div class="dec">
+        <p class="dec-q">OT냐 CRDT냐</p>
+        <p>OT는 서버가 모든 충돌을 중재해야 합니다. MSA 분산 구조에서 100명 동시 편집이라는 목표라면 부하가 한곳에 몰린다고 판단해, 클라이언트가 독립적으로 연산하고 나중에 병합하는 CRDT(Y.js)를 골랐습니다.</p>
+      </div>
+      <div class="dec">
+        <p class="dec-q">P2P냐 SFU냐</p>
+        <p>P2P는 참가자가 늘면 연결 수가 제곱으로 늘어납니다. 확장성 한계를 분석한 뒤 MediaSoup SFU로 설계를 전환했고, 50명 동시 접속 음성 통화를 안정적으로 통과했습니다.</p>
+      </div>
+      <div class="dec">
+        <p class="dec-q">팀이 기다리지 않게</p>
+        <p>착수 전 경쟁 솔루션을 분석해 UX 프로토타입과 사용자 가이드라인을 만들고, 서버 간 Contract를 먼저 정의했습니다. 팀원이 서로의 구현을 기다리지 않고 병렬로 개발했습니다.</p>
+      </div>
+    </div>
+
+    <ul class="repos small">
+      <li><a href="https://github.com/TIMOA-MAIN"><b>TIMOA-MAIN</b><span>Organization · 13 저장소 · ADR 15건 (TIMOA_Docs)</span><i>Node.js · Java · Electron</i></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ S-04 PRINCIPLES ============ -->
+<section class="sheet" id="principles">
+  <div class="wrap">
+    <header class="sheet-head simple">
+      <p class="sheet-no">S-04</p>
+      <h2>일하는 원칙</h2>
+    </header>
+    <div class="principles">
+      <article>
+        <h3>구조가 품질을 결정한다</h3>
+        <p>SSOT, HLD/LLD, Contract처럼 팀 전체가 같은 기준으로 움직이는 구조를 먼저 만들면, 개인 기술의 차이보다 더 큰 품질 차이가 납니다.</p>
+      </article>
+      <article>
+        <h3>장애는 대부분 변경에서 시작된다</h3>
+        <p>가장 큰 장애는 공격도 고장도 아닌 자동 업데이트에서 왔습니다. 그래서 코드로 관리되는 인프라와 Git 기반 배포를 어떤 기술보다 먼저 둡니다.</p>
+      </article>
+      <article>
+        <h3>드러나지 않는 문제를 찾는다</h3>
+        <p>인수인계 문서를 쓰며 전 항목을 kubectl·helm으로 실사 검증하다가, 알림이 누구에게도 가지 않는 상태를 발견했습니다. 증상이 아니라 구조적 원인을 봅니다.</p>
+      </article>
+      <article>
+        <h3>담당자만 아는 환경을 만들지 않는다</h3>
+        <p>설계한 사람이 없어도 돌아가야 합니다. 권한을 팀 단위로 나누고, 실제 장애 사례를 기준으로 가이드라인과 학습 로드맵을 남겼습니다.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S-05 STACK ============ -->
+<section class="sheet" id="stack">
+  <div class="wrap">
+    <header class="sheet-head simple">
+      <p class="sheet-no">S-05</p>
+      <h2>기술</h2>
+    </header>
+    <div class="stack">
+      <div class="layer"><p class="layer-name">Platform</p><p class="layer-items">Kubernetes · Helm · Calico · MetalLB · Envoy Gateway (Gateway API) · KServe · vLLM · llm-d</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Delivery</p><p class="layer-items">Jenkins (Kaniko) · ArgoCD · Gitea Actions · Gitea Registry · Terraform</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Observability</p><p class="layer-items">Prometheus · Alertmanager · dcgm-exporter · 자체 대시보드 (socket.io)</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Application</p><p class="layer-items">Node.js · Express · React · Java (Spring Boot) · Python · PyTorch · Y.js · MediaSoup</p><p class="layer-where">프로젝트</p></div>
+      <div class="layer"><p class="layer-name">Data</p><p class="layer-items">PostgreSQL · pgvector · MS SQL · AWS S3</p><p class="layer-where">프로젝트</p></div>
+      <div class="layer"><p class="layer-name">Cloud</p><p class="layer-items">AWS (Solutions Architect – Associate) · Azure</p><p class="layer-where">자격·학습</p></div>
+      <div class="layer"><p class="layer-name">Method</p><p class="layer-items">SSOT · Contract · HLD/LLD · TDD/BDD · ADR · SLA · RTO/RPO</p><p class="layer-where">전 프로젝트</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S-06 RECORD ============ -->
+<section class="sheet" id="record">
+  <div class="wrap">
+    <header class="sheet-head simple">
+      <p class="sheet-no">S-06</p>
+      <h2>이력</h2>
+    </header>
+    <div class="record">
+      <div>
+        <h3 class="rec-h">교육</h3>
+        <ul class="timeline">
+          <li><span class="when">2021.03 – 2027.03</span><p><b>우송대학교 AI·빅데이터학과</b>학사 졸업 예정</p></li>
+          <li><span class="when">2025.03 – 2025.08</span><p><b>우송비트 고급 과정 41기</b>비트교육센터 · 수료</p></li>
+          <li><span class="when">2026.07 – 2027.01</span><p><b>비트 클라우드 6기</b>베스핀글로벌 · 수강 중</p></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rec-h">자격</h3>
+        <ul class="timeline">
+          <li><span class="when">2026.09 갱신</span><p><b>AWS Certified Solutions Architect – Associate</b>Amazon Web Services</p></li>
+          <li><span class="when">2026.03</span><p><b>Microsoft Azure Fundamentals (AZ-900)</b>Microsoft</p></li>
+          <li class="planned"><span class="when">2026.12 목표</span><p><b>AWS Certified Solutions Architect – Professional</b>준비 중</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div>
+      <p class="foot-big">함께 판을 설계할 팀을 찾고 있습니다.</p>
+      <p class="foot-mail"><a href="mailto:ybc1642@gmail.com">ybc1642@gmail.com</a> <button type="button" class="copy" id="copyBtn" data-copy="ybc1642@gmail.com">복사</button></p>
+    </div>
+    <p class="foot-meta mono">JHY/DWG · REV.03 · 2026-11<br>공개 저장소의 IP·도메인·조직명은 예시값으로 치환됨</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
