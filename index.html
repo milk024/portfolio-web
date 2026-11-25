@@ -16,12 +16,12 @@
   <div class="wrap topbar-inner">
     <a class="brand" href="#top">PORTFOLIO</a>
     <nav class="sheets" aria-label="섹션">
-      <a href="#infra"><b>S-01</b> 인프라</a>
-      <a href="#cmyk"><b>S-02</b> CMYK</a>
-      <a href="#timoa"><b>S-03</b> TIMOA</a>
-      <a href="#principles"><b>S-04</b> 원칙</a>
-      <a href="#stack"><b>S-05</b> 기술</a>
-      <a href="#record"><b>S-06</b> 이력</a>
+      <a href="#stack"><b>S-01</b> 기술</a>
+      <a href="#record"><b>S-02</b> 이력</a>
+      <a href="#infra"><b>S-03</b> 인프라</a>
+      <a href="#cmyk"><b>S-04</b> CMYK</a>
+      <a href="#timoa"><b>S-05</b> TIMOA</a>
+      <a href="#principles"><b>S-06</b> 원칙</a>
     </nav>
   </div>
 </header>
@@ -65,11 +65,57 @@
   </div>
 </section>
 
-<!-- ============ S-01 INFRA ============ -->
+<!-- ============ S-01 STACK ============ -->
+<section class="sheet" id="stack">
+  <div class="wrap">
+    <header class="sheet-head simple">
+      <p class="sheet-no">S-01</p>
+      <h2>기술</h2>
+    </header>
+    <div class="stack">
+      <div class="layer"><p class="layer-name">Platform</p><p class="layer-items">Kubernetes · Helm · Calico · MetalLB · Envoy Gateway (Gateway API) · KServe · vLLM · llm-d</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Delivery</p><p class="layer-items">Jenkins (Kaniko) · ArgoCD · Gitea Actions · Gitea Registry · Terraform</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Observability</p><p class="layer-items">Prometheus · Alertmanager · dcgm-exporter · 자체 대시보드 (socket.io)</p><p class="layer-where">운영 중</p></div>
+      <div class="layer"><p class="layer-name">Application</p><p class="layer-items">Node.js · Express · React · Java (Spring Boot) · Python · PyTorch · Y.js · MediaSoup</p><p class="layer-where">프로젝트</p></div>
+      <div class="layer"><p class="layer-name">Data</p><p class="layer-items">PostgreSQL · pgvector · MS SQL · AWS S3</p><p class="layer-where">프로젝트</p></div>
+      <div class="layer"><p class="layer-name">Cloud</p><p class="layer-items">AWS (Solutions Architect – Associate) · Azure</p><p class="layer-where">자격·학습</p></div>
+      <div class="layer"><p class="layer-name">Method</p><p class="layer-items">SSOT · Contract · HLD/LLD · TDD/BDD · ADR · SLA · RTO/RPO</p><p class="layer-where">전 프로젝트</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S-02 RECORD ============ -->
+<section class="sheet" id="record">
+  <div class="wrap">
+    <header class="sheet-head simple">
+      <p class="sheet-no">S-02</p>
+      <h2>이력</h2>
+    </header>
+    <div class="record">
+      <div>
+        <h3 class="rec-h">교육</h3>
+        <ul class="timeline">
+          <li><span class="when">2021.03 – 2027.03</span><p><b>우송대학교 AI·빅데이터학과</b>학사 졸업 예정</p></li>
+          <li><span class="when">2025.03 – 2025.08</span><p><b>우송비트 고급 과정 41기</b>비트교육센터 · 수료</p></li>
+          <li><span class="when">2026.07 – 2027.01</span><p><b>비트 클라우드 6기</b>베스핀글로벌 · 수강 중</p></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="rec-h">자격</h3>
+        <ul class="timeline">
+          <li><span class="when">2026.09 갱신</span><p><b>AWS Certified Solutions Architect – Associate</b>Amazon Web Services</p></li>
+          <li><span class="when">2026.03</span><p><b>Microsoft Azure Fundamentals (AZ-900)</b>Microsoft</p></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ S-03 INFRA ============ -->
 <section class="sheet" id="infra">
   <div class="wrap">
     <header class="sheet-head">
-      <p class="sheet-no">S-01</p>
+      <p class="sheet-no">S-03</p>
       <div>
         <h2>GPU 기반 Kubernetes 인프라 구축·운영</h2>
         <p class="sheet-sub">대학혁신지원사업 · AI 문서작성 RAG 시스템과 API 가상 키 발급·관리 시스템이 올라가는 클러스터</p>
@@ -280,11 +326,11 @@
   </div>
 </section>
 
-<!-- ============ S-02 CMYK ============ -->
+<!-- ============ S-04 CMYK ============ -->
 <section class="sheet" id="cmyk">
   <div class="wrap">
     <header class="sheet-head">
-      <p class="sheet-no">S-02</p>
+      <p class="sheet-no">S-04</p>
       <div>
         <h2>CMYK Grayspot Detection System</h2>
         <p class="sheet-sub">HP 산학협력 · CMYK 인쇄물의 Grayspot 결함을 Level 0–5로 분류하는 AI 탐지 시스템</p>
@@ -330,11 +376,11 @@
   </div>
 </section>
 
-<!-- ============ S-03 TIMOA ============ -->
+<!-- ============ S-05 TIMOA ============ -->
 <section class="sheet" id="timoa">
   <div class="wrap">
     <header class="sheet-head">
-      <p class="sheet-no">S-03</p>
+      <p class="sheet-no">S-05</p>
       <div>
         <h2>T.I.M.O.A 코딩 협업 플랫폼</h2>
         <p class="sheet-sub sheet-sub--wide">우송 비트 고급 과정 · VS Live Share, Notion, Slack, Discord를 하나로 묶은 실시간 협업 데스크탑 앱</p>
@@ -416,11 +462,11 @@
   </div>
 </section>
 
-<!-- ============ S-04 PRINCIPLES ============ -->
+<!-- ============ S-06 PRINCIPLES ============ -->
 <section class="sheet" id="principles">
   <div class="wrap">
     <header class="sheet-head simple">
-      <p class="sheet-no">S-04</p>
+      <p class="sheet-no">S-06</p>
       <h2>일하는 원칙</h2>
     </header>
     <div class="principles">
@@ -440,52 +486,6 @@
         <h3>담당자만 아는 환경을 만들지 않는다</h3>
         <p>설계한 사람이 없어도 돌아가야 합니다. 권한을 팀 단위로 나누고, 실제 장애 사례를 기준으로 가이드라인과 학습 로드맵을 남겼습니다.</p>
       </article>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S-05 STACK ============ -->
-<section class="sheet" id="stack">
-  <div class="wrap">
-    <header class="sheet-head simple">
-      <p class="sheet-no">S-05</p>
-      <h2>기술</h2>
-    </header>
-    <div class="stack">
-      <div class="layer"><p class="layer-name">Platform</p><p class="layer-items">Kubernetes · Helm · Calico · MetalLB · Envoy Gateway (Gateway API) · KServe · vLLM · llm-d</p><p class="layer-where">운영 중</p></div>
-      <div class="layer"><p class="layer-name">Delivery</p><p class="layer-items">Jenkins (Kaniko) · ArgoCD · Gitea Actions · Gitea Registry · Terraform</p><p class="layer-where">운영 중</p></div>
-      <div class="layer"><p class="layer-name">Observability</p><p class="layer-items">Prometheus · Alertmanager · dcgm-exporter · 자체 대시보드 (socket.io)</p><p class="layer-where">운영 중</p></div>
-      <div class="layer"><p class="layer-name">Application</p><p class="layer-items">Node.js · Express · React · Java (Spring Boot) · Python · PyTorch · Y.js · MediaSoup</p><p class="layer-where">프로젝트</p></div>
-      <div class="layer"><p class="layer-name">Data</p><p class="layer-items">PostgreSQL · pgvector · MS SQL · AWS S3</p><p class="layer-where">프로젝트</p></div>
-      <div class="layer"><p class="layer-name">Cloud</p><p class="layer-items">AWS (Solutions Architect – Associate) · Azure</p><p class="layer-where">자격·학습</p></div>
-      <div class="layer"><p class="layer-name">Method</p><p class="layer-items">SSOT · Contract · HLD/LLD · TDD/BDD · ADR · SLA · RTO/RPO</p><p class="layer-where">전 프로젝트</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ S-06 RECORD ============ -->
-<section class="sheet" id="record">
-  <div class="wrap">
-    <header class="sheet-head simple">
-      <p class="sheet-no">S-06</p>
-      <h2>이력</h2>
-    </header>
-    <div class="record">
-      <div>
-        <h3 class="rec-h">교육</h3>
-        <ul class="timeline">
-          <li><span class="when">2021.03 – 2027.03</span><p><b>우송대학교 AI·빅데이터학과</b>학사 졸업 예정</p></li>
-          <li><span class="when">2025.03 – 2025.08</span><p><b>우송비트 고급 과정 41기</b>비트교육센터 · 수료</p></li>
-          <li><span class="when">2026.07 – 2027.01</span><p><b>비트 클라우드 6기</b>베스핀글로벌 · 수강 중</p></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="rec-h">자격</h3>
-        <ul class="timeline">
-          <li><span class="when">2026.09 갱신</span><p><b>AWS Certified Solutions Architect – Associate</b>Amazon Web Services</p></li>
-          <li><span class="when">2026.03</span><p><b>Microsoft Azure Fundamentals (AZ-900)</b>Microsoft</p></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
