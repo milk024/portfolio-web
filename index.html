@@ -354,36 +354,40 @@
 
     <figure class="diagram">
       <div class="scroll-x">
-        <svg viewBox="0 0 960 300" role="img" aria-label="TIMOA 시스템 구성도">
+        <svg viewBox="0 0 960 312" role="img" aria-label="TIMOA 시스템 구성도">
           <defs>
             <marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="ah"/></marker>
           </defs>
-          <g class="box"><rect x="16" y="120" width="150" height="60"/><text x="91" y="146">Desktop Client</text><text x="91" y="163" class="t-s">Electron · React</text></g>
-          <g class="box accent mine"><rect x="210" y="120" width="150" height="60"/><text x="285" y="146">Proxy Server</text><text x="285" y="163" class="t-s">헬스체크 동적 라우팅</text></g>
-          <g class="edge"><path d="M166 150 H208" marker-end="url(#ah2)"/></g>
+          <g class="box"><rect x="16" y="126" width="160" height="60"/><text x="96" y="152">Desktop Client</text><text x="96" y="169" class="t-s">Electron · React</text></g>
+          <g class="box accent mine"><rect x="212" y="126" width="160" height="60"/><text x="292" y="152">Proxy Server</text><text x="292" y="169" class="t-s ko">헬스체크 동적 라우팅</text></g>
 
           <g class="box"><rect x="420" y="16" width="200" height="40"/><text x="520" y="41">Chat · REST + SSE</text></g>
-          <g class="box"><rect x="420" y="66" width="200" height="40"/><text x="520" y="91">Dashboard · REST + SSE</text></g>
-          <g class="box"><rect x="420" y="116" width="200" height="40"/><text x="520" y="141">User · Spring Boot</text></g>
-          <g class="box mine"><rect x="420" y="166" width="200" height="40"/><text x="520" y="191">Document · Y.js CRDT</text></g>
-          <g class="box mine"><rect x="420" y="216" width="200" height="40"/><text x="520" y="241">Code · Theia + CRDT</text></g>
-          <g class="box mine"><rect x="660" y="216" width="150" height="40"/><text x="735" y="241">Voice · MediaSoup</text></g>
+          <g class="box"><rect x="420" y="64" width="200" height="40"/><text x="520" y="89">Dashboard · REST + SSE</text></g>
+          <g class="box"><rect x="420" y="112" width="200" height="40"/><text x="520" y="137">User · Spring Boot</text></g>
+          <g class="box mine"><rect x="420" y="160" width="200" height="40"/><text x="520" y="185">Document · Y.js CRDT</text></g>
+          <g class="box mine"><rect x="420" y="208" width="200" height="40"/><text x="520" y="233">Code · Theia + CRDT</text></g>
+          <g class="box mine"><rect x="420" y="256" width="200" height="40"/><text x="520" y="281">Voice · MediaSoup SFU</text></g>
+
+          <g class="grp"><rect x="690" y="64" width="250" height="136"/><text x="702" y="81" class="grp-label">DATA</text></g>
+          <g class="box store"><rect x="706" y="90" width="218" height="44"/><text x="815" y="110">MS SQL</text><text x="815" y="125" class="t-s ko">공유 DB</text></g>
+          <g class="box store"><rect x="706" y="144" width="218" height="44"/><text x="815" y="164">AWS S3</text><text x="815" y="179" class="t-s ko">파일 스토리지</text></g>
 
           <g class="edge">
-            <path d="M360 150 H390 V36 H418" marker-end="url(#ah2)"/>
-            <path d="M390 86 H418" marker-end="url(#ah2)"/>
-            <path d="M390 136 H418" marker-end="url(#ah2)"/>
-            <path d="M390 186 H418" marker-end="url(#ah2)"/>
-            <path d="M390 150 V236 H418" marker-end="url(#ah2)"/>
-            <path d="M390 268 H735 V258" marker-end="url(#ah2)"/>
-            <path d="M390 236 V268"/>
-            <path d="M620 36 H700 V100" marker-end="url(#ah2)" class="thin"/>
-            <path d="M620 136 H698" marker-end="url(#ah2)" class="thin"/>
-            <path d="M620 186 H700 V154" marker-end="url(#ah2)" class="thin"/>
+            <path d="M176 156 H210" marker-end="url(#ah2)"/>
+            <path d="M372 156 H394"/>
+            <path d="M394 36 V276"/>
+            <path d="M394 36 H418" marker-end="url(#ah2)"/>
+            <path d="M394 84 H418" marker-end="url(#ah2)"/>
+            <path d="M394 132 H418" marker-end="url(#ah2)"/>
+            <path d="M394 180 H418" marker-end="url(#ah2)"/>
+            <path d="M394 228 H418" marker-end="url(#ah2)"/>
+            <path d="M394 276 H418" marker-end="url(#ah2)"/>
+            <path d="M620 36 H656 V132" class="thin"/>
+            <path d="M620 180 H656 V132" class="thin"/>
+            <path d="M620 228 H656 V132" class="thin"/>
+            <path d="M620 132 H688" marker-end="url(#ah2)" class="thin"/>
           </g>
-          <g class="box store"><rect x="660" y="102" width="130" height="50"/><text x="725" y="125">MS SQL</text><text x="725" y="141" class="t-s">공유 DB</text></g>
-          <g class="box store"><rect x="820" y="102" width="124" height="50"/><text x="882" y="125">AWS S3</text><text x="882" y="141" class="t-s">파일 스토리지</text></g>
-          <text x="864" y="236" class="legend"><tspan class="lg-mine">■</tspan> 직접 담당</text>
+          <text x="940" y="36" class="legend lg-r"><tspan class="lg-mine">■</tspan> 직접 담당</text>
         </svg>
       </div>
       <figcaption>서비스마다 통신 방식을 따로 골랐습니다. 채팅·대시보드는 단방향 갱신이 대부분이라 WebSocket 대신 SSE, 편집은 CRDT, 음성은 SFU.</figcaption>

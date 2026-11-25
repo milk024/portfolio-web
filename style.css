@@ -193,6 +193,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .diagram .actor text.t-s { fill: color-mix(in srgb, var(--bg) 72%, var(--ink)); }
 .diagram .legend { text-anchor: middle; font-size: 11px; fill: var(--ink-2); font-weight: 400; }
 .diagram .lg-mine { fill: var(--accent); }
+.diagram text.t-s.ko { font-family: var(--f-sans); }
+.diagram .legend.lg-r { text-anchor: end; }
 
 /* ===== Compare table ===== */
 .compare { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 15px; background: var(--surface); border: 1px solid var(--line); }
